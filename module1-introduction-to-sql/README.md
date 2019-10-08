@@ -51,15 +51,29 @@ randomized, the numeric and boolean fields were left as defaults.
 Use `sqlite3` to load and write queries to explore the data, and answer the
 following questions:
 
-- How many total Characters are there?
+- How many total Characters are there?  
+  q1 = 302
 - How many of each specific subclass?
+  q2 = charactercreator_character_inventory 302
+  q3 = charactercreator_mage 108
+  q4 = charactercreator_thief 51
+  q5 = charactercreator_cleric 75
+  q6 = charactercreator_fighter 68
 - How many total Items?
-- How many of the Items are weapons? How many are not?
-- How many Items does each character have? (Return first 20 rows)
-- How many Weapons does each character have? (Return first 20 rows)
-- On average, how many Items does each Character have?
-- On average, how many Weapons does each character have?
+  q7 = 898
 
+- How many of the Items are weapons?
+  q8 = 203
+  How many are not?
+  q9 = 695
+- How many Items does each character have? (Return first 20 rows)
+q10
+- How many Weapons does each character have? (Return first 20 rows)
+q11
+- On average, how many Items does each Character have?
+q12= 2.97350993377483
+- On average, how many Weapons does each character have?
+q13 = 0.672185430463576
 You do not need all the tables - in particular, the `account_*`, `auth_*`,
 `django_*`, and `socialaccount_*` tables are for the application and do not have
 the data you need. the `charactercreator_*` and `armory_*` tables and where you
