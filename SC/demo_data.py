@@ -13,6 +13,7 @@ q1 = """ CREATE TABLE demo (
     """
 curs.execute(q1).fetchall()
 
+
 q2 = """ INSERT INTO demo (s, x, y)
     VALUES ('g', 3, 9),
            ('v', 5, 7),
@@ -25,6 +26,11 @@ count_r = """
         SELECT COUNT(*) FROM demo;
         """
 print('Number of rows=', curs.execute(count_r).fetchall()[0][0])
+#output
+"""
+('Number of rows=', 3)
+"""
+
 
 rows_5 = """
         SELECT COUNT(*)
@@ -32,11 +38,21 @@ rows_5 = """
         WHERE x >= 5 AND y >= 5;
         """
 print('Number of rows with at least 5=', curs.execute(rows_5).fetchall()[0][0])
+#output
+"""
+('Number of rows with at least 5=', 2)
+"""
+
 
 unique_values = """
                 SELECT COUNT(DISTINCT y) FROM demo;
                 """
 print('Unique Values in Y column=', curs.execute(unique_values).fetchall()[0][0])
+#output
+"""
+('Unique Values in Y column=', 2)
+"""
+
 
 curs.close()
 conn.commit()

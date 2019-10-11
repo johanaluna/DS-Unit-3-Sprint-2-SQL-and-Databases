@@ -130,9 +130,26 @@ interview screening questions (a form you fill when applying for a job):
 
 - In the Northwind database, what is the type of relationship between the
   `Employee` and `Territory` tables?
+Answer= First these two tables are not connected directly, because there is a table
+that interconnect Territories and Employee called EmployeeTerritory.
+This table has the 2 primary keys of Territories and Employee.
+In our example, the type of relationship between Employee and Terrytory is One to Many. That means that one employee can have many territories but a territory is assigned just to one employee.
+
 - What is a situation where a document store (like MongoDB) is appropriate, and
   what is a situation where it is not appropriate?
+
+MongoDB is a NoSQL data base, that means that Mongo storage the data object in separate documents. This unique characteristic of MongoDB can provides a high performance, high availability this means easy to replicate, easy to share, dynamic,
+flexible etc,. However, in companies that are highly transactional or in companies
+in which the model is designed up front, Mongo cannot  correctly because if two people looking at the same key might see different values depending on when the data was accessed. This happens because MongoDB is not ACID compliant.
+
 - What is "NewSQL", and what is it trying to achieve?
+NewSQL is  new type of database that aim to provide the scalability of NoSQL like fast reads and fast write with the guarantees of a relational database (ACID).
+These guarantees known as ACID stands for:
+ - Atomicity : each transaction is treated as its own unit of work. This means that when a transaction is committed  is full completed or not executed at all.
+ - Consistency : ensures that only valid data (follow all the rules) is written in the database.
+ - Isolation: guarantee that many transactions can be executed in parallel while
+   they  do not harm the database.
+ - Durability: guarantee ensures that once a transaction is committed it is committed forever.
 
 ### Part 5 - Turn it in!
 Add all the files you wrote (`demo_data.py`, `northwind.py`), as well as this
