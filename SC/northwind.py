@@ -4,14 +4,16 @@ import sqlite3 as sql
 conn = sql.connect("northwind_small.sqlite3")
 curs = conn.cursor()
 
-q1= """
-    SELECT ProductName, UnitPrice
-    FROM Product
-    ORDER BY UnitPrice DESC
-    LIMIT 10;
-    """
-print('What are the ten most expensive items (per unit price) in the database?')
-print('Answer1:',curs.execute(q1).fetchall())
+def expensive_items():
+    q1= """
+        SELECT ProductName, UnitPrice
+        FROM Product
+        ORDER BY UnitPrice DESC
+        LIMIT 10;
+        """
+
+    print('What are the ten most expensive items (per unit price) in the database?')
+    print('Answer1:',curs.execute(q1).fetchall())
 
 
 #output
@@ -30,12 +32,12 @@ What are the ten most expensive items (per unit price) in the database?
 (u'R\xf6ssle Sauerkraut', 45.6)])
 """
 
-
-q2= """
-    SELECT AVG(HireDate -BirthDate) FROM Employee;
-    """
-print('What is the average age of an employee at the time of their hiring?')
-print('Answer2:',curs.execute(q2).fetchall())
+def avg_emplo():
+    q2= """
+        SELECT AVG(HireDate -BirthDate) FROM Employee;
+        """
+    print('What is the average age of an employee at the time of their hiring?')
+    print('Answer2:',curs.execute(q2).fetchall())
 
 #output
 """
@@ -44,15 +46,15 @@ What is the average age of an employee at the time of their hiring?
 ('Answer2:', [(37.22222222222222,)])
 """
 
-
-q3= """
-    SELECT City, AVG(HireDate -BirthDate) AS AVGAgeHired
-    FROM Employee
-    GROUP BY City
-    ORDER BY AVGAgeHired DESC;
-    """
-print('How does the average age of employee at hire vary by city')
-print('Answer3:',curs.execute(q3).fetchall())
+def avg_emplo_city():
+    q3= """
+        SELECT City, AVG(HireDate -BirthDate) AS AVGAgeHired
+        FROM Employee
+        GROUP BY City
+        ORDER BY AVGAgeHired DESC;
+        """
+    print('How does the average age of employee at hire vary by city')
+    print('Answer3:',curs.execute(q3).fetchall())
 
 #output
 """
@@ -65,15 +67,15 @@ How does the average age of employee at hire vary by city
 (u'Kirkland', 29.0)])
 """
 
-
-q4 ="""
-    SELECT ProductName, CompanyName, UnitPrice
-    FROM Product
-    INNER JOIN Supplier ON SupplierId = Supplier.Id
-    ORDER BY UnitPrice DESC LIMIT 10
-    """
-print('What are the ten most expensive items (per unit price) in the database and their suppliers?')
-print('Answer4:',curs.execute(q4).fetchall())
+def expensive_items_suppl():
+    q4 ="""
+        SELECT ProductName, CompanyName, UnitPrice
+        FROM Product
+        INNER JOIN Supplier ON SupplierId = Supplier.Id
+        ORDER BY UnitPrice DESC LIMIT 10
+        """
+    print('What are the ten most expensive items (per unit price) in the database and their suppliers?')
+    print('Answer4:',curs.execute(q4).fetchall())
 
 #output
 """
@@ -90,17 +92,17 @@ print('Answer4:',curs.execute(q4).fetchall())
 (u'R\xf6ssle Sauerkraut',u'Plutzer Lebensmittelgro\xdfm\xe4rkte AG', 45.6)])
 """
 
-
-q5 = """
-     SELECT CategoryName
-     FROM Category
-     INNER JOIN Product
-     ON Category.Id = CategoryId
-     GROUP BY CategoryId
-     ORDER BY COUNT(DISTINCT Product.Id) DESC LIMIT 1;
-     """
-print('What is the largest category (by number of unique products in id)')
-print('Answer5:',curs.execute(q5).fetchall()[0][0])
+def unque_product():
+    q5 = """
+         SELECT CategoryName
+         FROM Category
+         INNER JOIN Product
+         ON Category.Id = CategoryId
+         GROUP BY CategoryId
+         ORDER BY COUNT(DISTINCT Product.Id) DESC LIMIT 1;
+         """
+    print('What is the largest category (by number of unique products in id)')
+    print('Answer5:',curs.execute(q5).fetchall()[0][0])
 
 #output
 """
@@ -108,18 +110,19 @@ What is the largest category (by number of unique products in id)
 ('Answer5:', u'Confections')
 """
 
-
-q6 = """
-     SELECT FirstName, LastName
-     FROM Employee
-     INNER JOIN EmployeeTerritory
-     ON EmployeeTerritory.EmployeeId = EmployeeId
-     GROUP BY EmployeeId
-     ORDER BY COUNT(DISTINCT TerritoryId) DESC LIMIT 1;
-     """
-print(' Who\'s the employee with the most territories? Use TerritoryId \
-(not name, region, or other fields) as the unique identifier for territories)')
-print('Answer6:',curs.execute(q6).fetchall())
+def employee_terrory():
+    q6 = """
+         SELECT FirstName, LastName
+         FROM Employee
+         INNER JOIN Employ
+         xewqwefqt3wgeeTerritory
+         ON EmployeeTerritory.EmployeeId = EmployeeId
+         GROUP BY EmployeeId
+         ORDER BY COUNT(DISTINCT TerritoryId) DESC LIMIT 1;
+         """
+    print(' Who\'s the employee with the most territories? Use TerritoryId \
+    (not name, region, or other fields) as the unique identifier for territories)')
+    print('Answer6:',curs.execute(q6).fetchall())
 
 #output
 """
